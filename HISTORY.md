@@ -1,11 +1,17 @@
-May 1-13 - 1.1.4  
-Loaded reverting for grunt-blanket, branch tracking reporter fixed, coverage on-the-go (displaying coverage results while a single page is being used).  
-  
-Apr 28-13 - 1.1.3
-YUI support added with custom adapter (and some wrapping code).  CompoundJS support appears to be outside the scope of project.
+# History #
 
-Apr 15-13 - 1.1.2  
-Instrumentation cacheing, and LCOV reporter, and passing options to custom reporters.
+## May 1st, 2013 - 1.1.4 ##
+* Loaded reverting for grunt-blanket
+* branch tracking reporter fixed
+* coverage on-the-go (displaying coverage results while a single page is being used)
+  
+## Apr 28th, 2013 - 1.1.3 ##
+* YUI support added with custom adapter (and some wrapping code)
+* CompoundJS support appears to be outside the scope of project
+
+## Apr 15th, 2013 - 1.1.2 ##
+* Instrumentation caching andLCOV reporter
+* Passing options to custom reporters
 
 Apr 2-13 - 1.1.1  
 CommonJS support, based on Browserify. Disable require loader when coverage is disabled (in QUnit).
