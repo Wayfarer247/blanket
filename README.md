@@ -1,14 +1,13 @@
-# Blanket.js
+# Blanket.js #
 
 A seamless JavaScript code coverage library.
 
+# Why this Fork? #
+The original [Blanket project](https://github.com/alex-seville/blanket) has had less and less tending to over the years. Looking at the commit graph, it has a huge amount of work in the beginning, but it slowly tapers off. Bugs have built up, Node has changed, and new features should be added. This fork pulls in Pull Requests from the original repo and merges them, ensuring Blanket lives on.
+
 [Project home page](http://blanketjs.org/)  
-[Blanket_js on Twitter](http://www.twitter.com/blanket_js) for updates and news.
 
-**NOTE: All Pull-Requests must be made into the `development` branch.**
-
-
-[![Build Status](https://travis-ci.org/alex-seville/blanket.svg)](https://travis-ci.org/alex-seville/blanket)
+**NOTE: All Pull-Requests must be made into the `develop` branch.**
 
 * [Getting Started](#getting-started)
 * [Philosophy](#philosophy)
@@ -25,7 +24,7 @@ A seamless JavaScript code coverage library.
 **NOTE:** Blanket.js will throw XHR cross domain errors if run with the file:// protocol.  See [Special Features Guide](https://github.com/alex-seville/blanket/blob/master/docs/special_features.md) for more details and workarounds.
 
 
-## Getting Started
+## Getting Started ##
 
 Please see the following guides for using Blanket.js:
 
@@ -96,36 +95,15 @@ A minified and unminfied copy of the source can be created (see the `min` task).
 
 ## Development
 
-**All development takes place on the `development` branch**  
+**All development takes place on the `develop` branch**  
 **Your pull request must pass all tests (run `npm test` to be sure) and respect all existing coverage thresholds**
 
 
-## Contact
-
-Feel free to add questions to the Issue tracker, or send them to [@blanket_js](http://www.twitter.com/blanket_js).
-
-
-## Contributors
-
-Thanks to the [many people who have contributed](https://github.com/alex-seville/blanket/network/members) to the project.
-
-And thanks also to: [RequireJS](http://requirejs.org/), [Esprima](http://esprima.org/), [node-falafel](https://github.com/substack/node-falafel), [Mocha](http://visionmedia.github.com/mocha/), [Qunit](http://qunitjs.com/).
-
 ## Roadmap
 
-v1.1.5 - Refactor reporter API. 
+I need to evaluate the code more.
 
-
-## Revision History
-
-May 1-13 - 1.1.4  
-Loaded reverting for grunt-blanket, branch tracking reporter fixed, coverage on-the-go (displaying coverage results while a single page is being used).  
-  
-Apr 28-13 - 1.1.3
-YUI support added with custom adapter (and some wrapping code).  CompoundJS support appears to be outside the scope of project.
-
-... (see [full revision history](HISTORY.md))
 
 ## License
-Copyright (c) 2012-2013 Alex Seville  
+Copyright (c) 2012-2013 Ethan Mick  
 Licensed under the MIT license.
