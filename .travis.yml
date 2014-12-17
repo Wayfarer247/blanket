@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "0.8"
   - "0.10"
 before_install:
   - npm update -g npm
@@ -10,7 +9,7 @@ before_script:
 branches:
   only:
     - master
-    - development
+    - develop
 
 notifications:
-  email: "hi@alexanderseville.com"
+  email: "ethan@ethanmick.com"
