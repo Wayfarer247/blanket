@@ -1,5 +1,6 @@
 # Blanket.js #
 
+![Build Status](https://travis-ci.org/Wayfarer247/blanket.svg?branch=develop)
 A seamless JavaScript code coverage library.
 
 # Why this Fork? #
