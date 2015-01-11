@@ -189,30 +189,31 @@ var blanketNode = function (userOptions,cli){
 if ((process.env && process.env.BLANKET_COV===1) ||
     (process.ENV && process.ENV.BLANKET_COV)){
     module.exports = blanketNode({engineOnly:true},false);
-}else{
-    var args = process.argv;
-    var blanketRequired = false;
+} else {
+  console.log('BLANKETING');
+  var args = process.argv;
+  var blanketRequired = false;
 
-    for (var i = 0; i < args.length; i++) {
-        if (['-r', '--require'].indexOf(args[i]) >= 0 &&
-            args[i + 1] === 'blanket') {
-            blanketRequired = true;
-        }
+  for (var i = 0; i < args.length; i++) {
+    if (['-r', '--require'].indexOf(args[i]) >= 0 &&
+        args[i + 1] === 'blanket') {
+      blanketRequired = true;
     }
+  }
 
-    if (args[0] === 'node' &&
-        args[1].indexOf(join('node_modules','mocha','bin')) > -1 &&
-        blanketRequired){
+  if (args[0] === 'node' &&
+      args[1].indexOf(join('node_modules','mocha','bin')) > -1 &&
+      blanketRequired){
 
-        //using mocha cli
-        module.exports = blanketNode(null,true);
-    }else{
-        //not mocha cli
-        module.exports = function(options){
-            //we don't want to expose the cli option.
-            return blanketNode(options,false);
-        };
-    }
+    //using mocha cli
+    module.exports = blanketNode(null,true);
+  }else{
+    //not mocha cli
+    module.exports = function(options){
+      //we don't want to expose the cli option.
+      return blanketNode(options,false);
+    };
+  }
 }
 
 
