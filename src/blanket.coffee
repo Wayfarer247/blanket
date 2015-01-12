@@ -1,27 +1,5 @@
 parseAndModify = require 'falafel'
 
-copynumber = Math.floor(Math.random()*1000)
-coverageInfo = {}
-options =
-  reporter: null
-  adapter: null
-  filter: null
-  customVariable: null
-  loader: null
-  ignoreScriptError: no,
-  existingRequireJS: no
-  autoStart: no
-  timeout: 180
-  ignoreCors: no
-  branchTracking: no
-  sourceURL: no
-  debug: off
-  engineOnly: no
-  testReadyCallback: null
-  commonJS: no
-  instrumentCache: no
-  modulePattern: null
-
 class Blanket
 
   constructor: ->
@@ -53,15 +31,27 @@ class Blanket
       'WithStatement'
     ]
 
+    @coverageInfo = {}
+    @_options =
+      reporter: null
+      adapter: null
+      filter: null
+      customVariable: null
+      loader: null
+      ignoreScriptError: no,
+      existingRequireJS: no
+      autoStart: no
+      timeout: 180
+      ignoreCors: no
+      branchTracking: no
+      sourceURL: no
+      debug: off
+      engineOnly: no
+      testReadyCallback: null
+      commonJS: no
+      instrumentCache: no
+      modulePattern: null
 
-  _getCopyNumber: ->
-    # internal method
-    # for differentiating between instances
-    copynumber
-
-  extend: (obj)->
-    # borrowed from underscore
-    @_extend(this, obj)
 
   _extend: (dest, source)->
     if source
@@ -83,11 +73,11 @@ class Blanket
   # nested elements, NOR DO WE USE IT EVERYWHERE
   options: (key, value)->
     if typeof key isnt 'string'
-      @_extend(options, key)
+      @_extend(@_options, key)
     else if typeof value is 'undefined'
-      return options[key]
+      return @_options[key]
     else
-      options[key] = value
+      @_options[key] = value
 
   #
   # Magic!
@@ -232,8 +222,8 @@ class Blanket
 
 
   setupCoverage: ->
-    coverageInfo.instrumentation = 'blanket'
-    coverageInfo.stats =
+    @coverageInfo.instrumentation = 'blanket'
+    @coverageInfo.stats =
       suites: 0
       tests: 0
       passes: 0
@@ -243,37 +233,36 @@ class Blanket
 
 
   _checkIfSetup: ->
-    if not coverageInfo.stats
+    if not @coverageInfo.stats
       throw new Error("You must call blanket.setupCoverage() first.")
 
   onTestStart: ->
     console.log("BLANKET-Test event started") if @options("debug")
     @_checkIfSetup()
-    coverageInfo.stats.tests++
-    coverageInfo.stats.pending++
+    @coverageInfo.stats.tests++
+    @coverageInfo.stats.pending++
 
   onTestDone: (total,passed)->
     @_checkIfSetup()
     if passed is total
-      coverageInfo.stats.passes++
+      @coverageInfo.stats.passes++
     else
-      coverageInfo.stats.failures++
-
-    coverageInfo.stats.pending--
+      @coverageInfo.stats.failures++
+    @coverageInfo.stats.pending--
 
   onModuleStart: ->
     @_checkIfSetup()
-    coverageInfo.stats.suites++
+    @coverageInfo.stats.suites++
 
   onTestsDone: ->
     console.log("BLANKET-Test event done") if @options("debug")
     @_checkIfSetup()
-    coverageInfo.stats.end = new Date()
+    @coverageInfo.stats.end = new Date()
 
     if not @options("branchTracking")
       delete global[@getCovVar()].branchFcn
 
-    @options("reporter").call(this, coverageInfo)
+    @options("reporter").call(this, @coverageInfo)
 
 
 exports.blanket = new Blanket()
