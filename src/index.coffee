@@ -11,7 +11,7 @@ packageConfigs = null
 
 # I am convinced the 'cli' option actually does nothing.
 # So there's that.
-blanketNode = (userOptions, cli)->
+blanketNode = (userOptions)->
   if file
     scripts = file.scripts
     config = file.config
@@ -231,7 +231,7 @@ blanketNode = (userOptions, cli)->
 
 # Start!
 if (process.env and process.env.BLANKET_COV is 1) or (process.ENV and process.ENV.BLANKET_COV)
-  module.exports = blanketNode({engineOnly:true},false)
+  module.exports = blanketNode( engineOnly: yes )
 else
   args = process.argv
   blanketRequired = no
@@ -242,9 +242,9 @@ else
   if args[0] is 'node' and args[1].indexOf(join('node_modules','mocha','bin')) > -1 and blanketRequired
     # using mocha cli
     # This is broken, I don't start mocha this way.
-    module.exports = blanketNode( null, true )
+    module.exports = blanketNode( null )
   else
     # not mocha cli
     module.exports = (options)->
       # we don't want to expose the cli option.
-      blanketNode(options, false)
+      blanketNode(options)

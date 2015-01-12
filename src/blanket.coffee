@@ -1,32 +1,5 @@
 parseAndModify = require 'falafel'
 
-linesToAddTracking = [
-  'ExpressionStatement'
-  'BreakStatement'
-  'ContinueStatement'
-  'VariableDeclaration'
-  'ReturnStatement'
-  'ThrowStatement'
-  'TryStatement'
-  'FunctionDeclaration'
-  'IfStatement'
-  'WhileStatement'
-  'DoWhileStatement'
-  'ForStatement'
-  'ForInStatement'
-  'SwitchStatement'
-  'WithStatement'
-]
-
-linesToAddBrackets = [
-  'IfStatement'
-  'WhileStatement'
-  'DoWhileStatement'
-  'ForStatement'
-  'ForInStatement'
-  'WithStatement'
-]
-
 copynumber = Math.floor(Math.random()*1000)
 coverageInfo = {}
 options =
@@ -54,6 +27,32 @@ class Blanket
   constructor: ->
     @_trackingArraySetup = []
     @_branchingArraySetup = []
+    @linesToAddTracking = [
+      'ExpressionStatement'
+      'BreakStatement'
+      'ContinueStatement'
+      'VariableDeclaration'
+      'ReturnStatement'
+      'ThrowStatement'
+      'TryStatement'
+      'FunctionDeclaration'
+      'IfStatement'
+      'WhileStatement'
+      'DoWhileStatement'
+      'ForStatement'
+      'ForInStatement'
+      'SwitchStatement'
+      'WithStatement'
+    ]
+    @linesToAddBrackets = [
+      'IfStatement'
+      'WhileStatement'
+      'DoWhileStatement'
+      'ForStatement'
+      'ForInStatement'
+      'WithStatement'
+    ]
+
 
   _getCopyNumber: ->
     # internal method
@@ -171,7 +170,7 @@ class Blanket
     return intro
 
   _blockifyIf: (node)->
-    if linesToAddBrackets.indexOf(node.type) > -1
+    if @linesToAddBrackets.indexOf(node.type) > -1
       bracketsExistObject = node.consequent or node.body
       bracketsExistAlt = node.alternate
       if bracketsExistAlt and bracketsExistAlt.type isnt 'BlockStatement'
@@ -208,7 +207,7 @@ class Blanket
     return (node)=>
       @_blockifyIf(node)
 
-      if linesToAddTracking.indexOf(node.type) > -1 and node.parent.type isnt 'LabeledStatement'
+      if @linesToAddTracking.indexOf(node.type) > -1 and node.parent.type isnt 'LabeledStatement'
         @_checkDefs(node,filename)
         if node.type is 'VariableDeclaration' and (node.parent.type is 'ForStatement' or node.parent.type is 'ForInStatement')
           return

@@ -16,7 +16,7 @@
 
   packageConfigs = null;
 
-  blanketNode = function(userOptions, cli) {
+  blanketNode = function(userOptions) {
     var blanket, blanketConfigs, config, escapeRegExp, newLoader, newOptions, oldLoader, pattern, scripts;
     if (file) {
       scripts = file.scripts;
@@ -216,7 +216,7 @@
   if ((process.env && process.env.BLANKET_COV === 1) || (process.ENV && process.ENV.BLANKET_COV)) {
     module.exports = blanketNode({
       engineOnly: true
-    }, false);
+    });
   } else {
     args = process.argv;
     blanketRequired = false;
@@ -227,10 +227,10 @@
       }
     }
     if (args[0] === 'node' && args[1].indexOf(join('node_modules', 'mocha', 'bin')) > -1 && blanketRequired) {
-      module.exports = blanketNode(null, true);
+      module.exports = blanketNode(null);
     } else {
       module.exports = function(options) {
-        return blanketNode(options, false);
+        return blanketNode(options);
       };
     }
   }
