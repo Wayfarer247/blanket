@@ -15,7 +15,7 @@ module.exports = function(blanket){
 
     var antipattern = blanket.options("antifilter");
     if (typeof(antipattern) !== "undefined" && blanket.matchPattern(filename.replace(/\.js$/,""), antipattern)) {
-      oldLoader(localModule,filename);
+      oldLoaderCS(localModule,filename);
       if (blanket.options("debug")) {
 	console.log("BLANKET-File will never be instrumented:"+filename);
       }

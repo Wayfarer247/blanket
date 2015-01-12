@@ -73,13 +73,6 @@ blanketNode = (userOptions)->
 
     blanket.options(newOptions)
 
-  # Why are these not in the main blanket
-  # file?
-  #
-  # helper functions
-  blanket.normalizeBackslashes = (str)->
-    str.replace(/\\/g, '/')
-
 
   blanket.restoreNormalLoader = ->
     if not blanket.options('engineOnly')
@@ -91,38 +84,6 @@ blanketNode = (userOptions)->
     if not blanket.options('engineOnly')
       require.extensions['.js'] = newLoader
 
-
-  # you can pass in a string, a regex, or an array of files
-  blanket.matchPattern = (filename,pattern)->
-    cwdRegex = blanket.options('cwdRegex')
-    if cwdRegex and not cwdRegex.test(filename)
-      return false
-
-    if typeof pattern is 'string'
-      if pattern.indexOf('[') is 0
-        # treat as array
-        pattenArr = pattern.slice(1, pattern.length - 1).split(',')
-        return pattenArr.some (elem)->
-          blanket.matchPattern(filename, blanket.normalizeBackslashes(elem.slice(1,-1)))
-
-      else if pattern.indexOf('//') is 0
-        ex = pattern.slice(2, pattern.lastIndexOf('/'))
-        mods = pattern.slice(pattern.lastIndexOf('/')+1)
-        regex = new RegExp(ex, mods)
-        return regex.test(filename)
-      else
-        return filename.indexOf(blanket.normalizeBackslashes(pattern)) > -1
-
-    else if Array.isArray(pattern)
-      return pattern.some (elem)->
-        filename.indexOf(blanket.normalizeBackslashes(elem)) > -1
-
-    else if pattern instanceof RegExp
-      return pattern.test(filename)
-    else if typeof pattern is 'function'
-      return pattern(filename)
-    else
-      throw Error("Bad file instrument indicator.  Must be a string, regex, function, or array.")
 
   # Last Option.
   # Need to look into this "engineonly" thing

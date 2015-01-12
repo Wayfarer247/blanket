@@ -79,6 +79,42 @@ class Blanket
     else
       @_options[key] = value
 
+  normalizeBackslashes: (str)->
+    str.replace(/\\/g, '/')
+
+
+  matchPattern: (filename, pattern)->
+    cwdRegex = @options('cwdRegex')
+    if cwdRegex and not cwdRegex.test(filename)
+      return no
+
+    if typeof pattern is 'string'
+      if pattern.indexOf('[') is 0
+        # treat as array
+        pattenArr = pattern.slice(1, pattern.length - 1).split(',')
+        return pattenArr.some (elem)->
+          @matchPattern(filename, @normalizeBackslashes(elem.slice(1,-1)))
+
+      else if pattern.indexOf('//') is 0
+        ex = pattern.slice(2, pattern.lastIndexOf('/'))
+        mods = pattern.slice(pattern.lastIndexOf('/')+1)
+        regex = new RegExp(ex, mods)
+        return regex.test(filename)
+      else
+        return filename.indexOf(@normalizeBackslashes(pattern)) > -1
+
+    else if Array.isArray(pattern)
+      return pattern.some (elem)->
+        filename.indexOf(@normalizeBackslashes(elem)) > -1
+
+    else if pattern instanceof RegExp
+      return pattern.test(filename)
+    else if typeof pattern is 'function'
+      return pattern(filename)
+    else
+      throw Error("Bad file instrument indicator.  Must be a string, regex, function, or array.")
+
+
   #
   # Magic!
   #
