@@ -23,11 +23,11 @@
   ],
   "main": "src/index.js",
   "engines": {
-    "node": ">=0.10.7"
+    "node": ">=0.10.x"
   },
   "dependencies": {
-    "esprima": "~1.2.2",
-    "falafel": "~0.3.1",
+    "esprima": "1.2.2",
+    "falafel": "0.3.1",
     "xtend": "~3.0.0"
   },
   "devDependencies": {
