@@ -13,14 +13,14 @@ module.exports = function(blanket){
 	inputFilename = filename;
     filename = blanket.normalizeBackslashes(filename);
 
-    var antipattern = _blanket.options("antifilter");
+    var antipattern = blanket.options("antifilter");
     if (typeof(antipattern) !== "undefined" && blanket.matchPattern(filename.replace(/\.js$/,""), antipattern)) {
       oldLoader(localModule,filename);
-      if (_blanket.options("debug")) {
+      if (blanket.options("debug")) {
 	console.log("BLANKET-File will never be instrumented:"+filename);
       }
     } else if (blanket.matchPattern(filename,pattern)){
-      if (_blanket.options("debug")) {console.log("BLANKET-Attempting instrument of:"+filename);}
+      if (blanket.options("debug")) {console.log("BLANKET-Attempting instrument of:"+filename);}
       var content = fs.readFileSync(filename, 'utf8');
       if (reporter_options && reporter_options.shortnames){
           inputFilename = filename.replace(path.dirname(filename),"");

@@ -1,6 +1,6 @@
-var path = require("path");
-var blanket = require("..//src/index")({
-    "pattern":"/src/blanket"
+var path = require('path');
+var blanket = require('../src/index')({
+    pattern: '/src/blanket'
 });
 
 /*
