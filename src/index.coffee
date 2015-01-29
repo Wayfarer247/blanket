@@ -191,7 +191,7 @@ blanketNode = (userOptions)->
   blanket
 
 # Start!
-if (process.env and process.env.BLANKET_COV is 1) or (process.ENV and process.ENV.BLANKET_COV)
+if process.env.BLANKET_COV
   module.exports = blanketNode( engineOnly: yes )
 else
   args = process.argv
@@ -200,9 +200,13 @@ else
   for val, i in args
     blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1] is 'blanket'
 
+  for val, i in args
+    blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1] is './bin/index.js'
+
   if args[0] is 'node' and args[1].indexOf(join('node_modules','mocha','bin')) > -1 and blanketRequired
     # using mocha cli
     # This is broken, I don't start mocha this way.
+    console.log 'Blanket is required and good to go'
     module.exports = blanketNode( null )
   else
     # not mocha cli

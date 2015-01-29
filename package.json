@@ -44,7 +44,7 @@
   },
   "config": {
     "blanket": {
-      "pattern": "test",
+      "pattern": "src",
       "data-cover-flags": {
         "debug": false
       },
