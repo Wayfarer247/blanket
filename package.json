@@ -1,7 +1,7 @@
 {
   "name": "blanket",
   "description": "seamless js code coverage",
-  "version": "1.1.7",
+  "version": "2.0.0",
   "homepage": "https://github.com/wayfarer247/blanket",
   "author": {
     "name": "Alex-Seville, Ethan Mick",

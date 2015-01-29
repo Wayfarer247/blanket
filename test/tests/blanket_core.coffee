@@ -1,10 +1,9 @@
 # core test to lib/blanket.js
 
 assert = require 'assert'
-blanketCore = require('../../src/blanket.js').blanket
+blanketCore = require('../../src/blanket.coffee').blanket
 falafel = require 'falafel'
 core_fixtures = require '../fixture/core_fixtures'
-
 
 normalizeWhitespace = (str)->
   str.replace(/\r\n/g, '\n')

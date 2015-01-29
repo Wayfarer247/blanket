@@ -6,14 +6,14 @@
 #
 
 test:
-	./node_modules/mocha/bin/mocha --require ./src/index.js test/testrunner.js
-	./node_modules/mocha/bin/mocha --require ./src/index.js --compilers coffee:coffee-script/register test/testrunner_cs.js
+	./node_modules/mocha/bin/mocha --require ./src/index.coffee --compilers coffee:coffee-script/register test/testrunner.coffee
+	./node_modules/mocha/bin/mocha --require ./src/index.coffee --compilers coffee:coffee-script/register test/testrunner_cs.coffee
 
 travis-cov:
-	./node_modules/mocha/bin/mocha --require ./src/index.js test/testrunner.js -R travis-cov
+	./node_modules/mocha/bin/mocha --require ./src/index.coffee --compilers coffee:coffee-script/register test/testrunner.coffee -R travis-cov
 
 cov:
-	./node_modules/mocha/bin/mocha --require ./src/index.js test/testrunner.js -R html-cov > coverage.html
+	./node_modules/mocha/bin/mocha --require ./src/index.coffe --compilers coffee:coffee-script/register test/testrunner.coffe -R html-cov > coverage.html
 	open coverage.html
 
 
