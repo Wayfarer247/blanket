@@ -39,7 +39,7 @@
     "travis-cov": "*"
   },
   "scripts": {
-    "prepublish": "coffee -o bin -c lib/*.coffee",
+    "prepublish": "coffee --output bin --compile src/",
     "test": "make test; make travis-cov"
   },
   "config": {
