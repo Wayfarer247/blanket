@@ -3,8 +3,6 @@ path = require 'path'
 coffeeScript = require 'coffee-script'
 
 module.exports = (blanket)->
-  console.log 'LOADED BITCHES', blanket
-
   oldLoaderCS = require.extensions['.coffee']
 
   require.extensions['.coffee'] = (localModule, filename)->
