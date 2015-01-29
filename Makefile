@@ -13,7 +13,7 @@ travis-cov:
 	./node_modules/mocha/bin/mocha --require ./src/index.coffee --compilers coffee:coffee-script/register test/testrunner.coffee -R travis-cov
 
 cov:
-	./node_modules/mocha/bin/mocha --require ./src/index.coffe --compilers coffee:coffee-script/register test/testrunner.coffe -R html-cov > coverage.html
+	./node_modules/mocha/bin/mocha --require ./src/index.coffee --compilers coffee:coffee-script/register test/testrunner.coffee -R html-cov > coverage.html
 	open coverage.html
 
 
