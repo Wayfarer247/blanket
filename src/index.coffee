@@ -5,12 +5,11 @@ extend = require 'xtend'
 path = require 'path'
 join = path.join
 fs = require 'fs'
-configPath = join process.cwd(), 'package.json'
+log = require './log'
+configPath = join(process.cwd(), 'package.json')
 file = if fs.existsSync(configPath) then JSON.parse(fs.readFileSync(configPath) or {}) else null
 packageConfigs = null
 
-# I am convinced the 'cli' option actually does nothing.
-# So there's that.
 blanketNode = (userOptions)->
   if file
     scripts = file.scripts
@@ -92,6 +91,7 @@ blanketNode = (userOptions)->
     # Oh fuck, I see what's happening here. The docs explicitely say not to
     # do this, lol. I'll need to run some testing to see how this works
     # with the values.
+
     ###
     { id: '/Users/ethan/Documents/blanket/test/fixture/test/testA.js',
     exports: {},
@@ -131,6 +131,9 @@ blanketNode = (userOptions)->
        '/node_modules' ] }
     ###
 
+    ###
+    This needs to be refactored out
+    ###
     require.extensions['.js'] = (localModule, filename)->
       pattern = blanket.options('filter')
       reporter_options = blanket.options('reporter_options')
@@ -142,11 +145,9 @@ blanketNode = (userOptions)->
       antipattern = blanket.options('antifilter')
       if typeof antipattern isnt 'undefined' and blanket.matchPattern(filename.replace(/\.js$/,""), antipattern)
         oldLoader(localModule, filename)
-        # I hate this manner of debugging. Export it to a 'log' module.
-        if blanket.options("debug")
-          console.log("BLANKET-File will never be instrumented:" + filename)
+        log.debug("BLANKET-File will never be instrumented:" + filename)
       else if blanket.matchPattern(filename,pattern)
-        console.log("BLANKET-Attempting instrument of:"+filename) if blanket.options("debug")
+        log.debug("BLANKET-Attempting instrument of:"+filename)
         content = fs.readFileSync(filename, 'utf8')
 
         # if we have a magic way of "getting" properties, it should handle nested
@@ -173,8 +174,7 @@ blanketNode = (userOptions)->
               # but otherwise we don't want
               # to completeLoad or the error might be
               # missed.
-              if blanket.options("debug")
-                console.log("BLANKET-There was an error loading the file:"+filename)
+              log.debug("BLANKET-There was an error loading the file:"+filename)
               oldLoader(localModule,filename)
             else
               throw new Error("BLANKET-Error parsing instrumented code: "+err)
@@ -201,12 +201,11 @@ else
     blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1] is 'blanket'
 
   for val, i in args
-    blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1] is './bin/index.js'
+    blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1].indexOf('bin/index.js') > -1
 
   if args[0] is 'node' and args[1].indexOf(join('node_modules','mocha','bin')) > -1 and blanketRequired
     # using mocha cli
     # This is broken, I don't start mocha this way.
-    console.log 'Blanket is required and good to go'
     module.exports = blanketNode( null )
   else
     # not mocha cli

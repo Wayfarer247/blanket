@@ -1,4 +1,5 @@
 parseAndModify = require 'falafel'
+log = require './log'
 
 class Blanket
 
@@ -64,7 +65,7 @@ class Blanket
   getCovVar: ->
     opt = @options('customVariable')
     if opt
-      console.log("BLANKET-Using custom tracking variable:", opt) if @options('debug')
+      log.debug("BLANKET-Using custom tracking variable:", opt)
       return opt
 
     return "_$jscoverage" #ugh.
@@ -123,8 +124,7 @@ class Blanket
     inFileName = config.inputFileName
     # check instrument cache
     if @options('instrumentCache') and sessionStorage and sessionStorage.getItem('blanket_instrument_store-' + inFileName)
-      if @options('debug')
-        console.log("BLANKET-Reading instrumentation from cache: ", inFileName)
+      log.debug("BLANKET-Reading instrumentation from cache: ", inFileName)
 
       next(sessionStorage.getItem("blanket_instrument_store-" + inFileName))
     else
@@ -137,9 +137,9 @@ class Blanket
       if @options("sourceURL")
         instrumented += "\n//@ sourceURL="+inFileName.replace("http://","")
 
-      console.log("BLANKET-Instrumented file: ",inFileName) if @options("debug")
+      log.debug("BLANKET-Instrumented file: ",inFileName)
       if @options("instrumentCache") and sessionStorage
-        console.log("BLANKET-Saving instrumentation to cache: ", inFileName) if @options("debug")
+        log.debug("BLANKET-Saving instrumentation to cache: ", inFileName)
         sessionStorage.setItem("blanket_instrument_store-"+inFileName,instrumented)
 
       next(instrumented)
@@ -271,7 +271,7 @@ class Blanket
       throw new Error("You must call blanket.setupCoverage() first.")
 
   onTestStart: ->
-    console.log("BLANKET-Test event started") if @options("debug")
+    log.debug("BLANKET-Test event started")
     @_checkIfSetup()
     @coverageInfo.stats.tests++
     @coverageInfo.stats.pending++
@@ -289,7 +289,7 @@ class Blanket
     @coverageInfo.stats.suites++
 
   onTestsDone: ->
-    console.log("BLANKET-Test event done") if @options("debug")
+    log.debug("BLANKET-Test event done")
     @_checkIfSetup()
     @coverageInfo.stats.end = new Date()
 
