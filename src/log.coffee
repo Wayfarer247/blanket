@@ -1,7 +1,8 @@
-"use strict"
+'use strict'
 
 winston = require 'winston'
-level = 'debug'
+
+level = process.env.WINSTON or 'error'
 
 log = new (winston.Logger)({
   transports: [
@@ -13,6 +14,6 @@ log = new (winston.Logger)({
       timestamp: yes
       label: process.pid
   ]
-});
+})
 
 module.exports = log
