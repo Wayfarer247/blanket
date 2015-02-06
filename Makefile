@@ -27,6 +27,6 @@ blanket-cov-test:
 	./node_modules/mocha/bin/mocha --require ./bin/index.js --compilers coffee:coffee-script/register blanket-tests -R html-cov
 
 compile:
-	coffee --output bin --compile src/
+	./node_modules/coffee-script/bin/coffee --output bin --compile src/
 
 .PHONY: test
