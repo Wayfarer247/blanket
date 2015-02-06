@@ -1,12 +1,20 @@
-# Blanket.js #
+# Blanket Node #
 
-![Build Status](https://travis-ci.org/Wayfarer247/blanket.svg?branch=develop)
-A seamless JavaScript code coverage library.
+![Build Status](https://travis-ci.org/ethanmick/blanket.svg?branch=develop)
+A seamless JavaScript/CoffeeScript code coverage library.
 
 # Why this Fork? #
-The original [Blanket project](https://github.com/alex-seville/blanket) has had less and less tending to over the years. Looking at the commit graph, it has a huge amount of work in the beginning, but it slowly tapers off. Bugs have built up, Node has changed, and new features should be added. This fork pulls in Pull Requests from the original repo and merges them, ensuring Blanket lives on.
+The original [Blanket](https://github.com/alex-seville/blanket) project has had less and less tending to over the years. Looking at the commit graph, it has a huge amount of work in the beginning, but it slowly tapers off. Bugs have built up, Node has changed, CoffeeScript has changed, and new features should be added.
 
-[Project home page](http://blanketjs.org/)  
+Also, the work I do is all on CoffeeScript (to each their own), and Blanket had a number of bugs handling CoffeeScript, and things I wish worked better.
+
+Of course, after forking it, I didn't really understand how the project worked... and what better way to find out then dig into the code? And now we are here... where I have re-written the entire project in CoffeeScript.
+
+Whoops!
+
+No worries, it compiles to JS, and that's used in NPM, so you can use this project with JS or CS.
+
+[Original Project Website](http://blanketjs.org/)  
 
 **NOTE: All Pull-Requests must be made into the `develop` branch.**
 
@@ -21,9 +29,6 @@ The original [Blanket project](https://github.com/alex-seville/blanket) has had 
 * [Contributors](#contributors)  
 * [Roadmap](#roadmap)
 * [Revision History](#revision-history)
-
-**NOTE:** Blanket.js will throw XHR cross domain errors if run with the file:// protocol.  See [Special Features Guide](https://github.com/alex-seville/blanket/blob/master/docs/special_features.md) for more details and workarounds.
-
 
 ## Getting Started ##
 
@@ -86,17 +91,14 @@ See the [Compatiblity and Feature List](https://github.com/alex-seville/blanket/
 
 ## Roll your own
 
-1. `git clone git@github.com:alex-seville/blanket.git`  
-2. `npm install`  
-3. Add your custom build details to the grunt.js file under `concat`
-3. `grunt buildit` 
-
-A minified and unminfied copy of the source can be created (see the `min` task).  
-
+1. `git clone git@github.com:alex-seville/blanket.git`
+2. `npm install`
+3. Begin hacking.
 
 ## Development
 
-**All development takes place on the `develop` branch**  
+**All development takes place on the `develop` branch**
+
 **Your pull request must pass all tests (run `npm test` to be sure) and respect all existing coverage thresholds**
 
 
@@ -104,7 +106,3 @@ A minified and unminfied copy of the source can be created (see the `min` task).
 
 I need to evaluate the code more.
 
-
-## License
-Copyright (c) 2012-2013 Ethan Mick  
-Licensed under the MIT license.
