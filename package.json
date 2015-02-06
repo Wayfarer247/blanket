@@ -1,8 +1,8 @@
 {
-  "name": "blanket",
-  "description": "seamless js code coverage",
-  "version": "2.0.0",
-  "homepage": "https://github.com/wayfarer247/blanket",
+  "name": "blanket-node",
+  "description": "Seamless JS and CS Code Coverage",
+  "version": "2.0.0-beta0",
+  "homepage": "https://github.com/ethanmick/blanket-node",
   "author": {
     "name": "Alex-Seville, Ethan Mick",
     "email": "ethan@ethanmick.com",
@@ -10,18 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/wayfarer247/blanket.git"
+    "url": "git://github.com/ethanmick/blanket-node.git"
   },
   "bugs": {
-    "url": "https://github.com/wayfarer247/blanket/issues"
+    "url": "https://github.com/ethanmick/blanket-node/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/wayfarer247/blanket/blob/master/LICENSE-MIT"
+      "url": "https://github.com/ethanmick/blanket-node/blob/develop/LICENSE"
     }
   ],
-  "main": "src/index.js",
+  "main": "bin/index.js",
   "engines": {
     "node": ">=0.10.x"
   },
@@ -60,6 +60,7 @@
     }
   },
   "keywords": [
+    "blanket-node",
     "node-blanket",
     "code coverage",
     "code",
