@@ -1,6 +1,6 @@
 # Blanket Node #
 
-![Build Status](https://travis-ci.org/ethanmick/blanket.svg?branch=develop)
+![Build Status](https://travis-ci.org/ethanmick/blanket-node.svg?branch=develop)
 A seamless JavaScript/CoffeeScript code coverage library.
 
 # Why this Fork? #
