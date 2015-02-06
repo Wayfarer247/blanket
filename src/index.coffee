@@ -197,6 +197,7 @@ else
   args = process.argv
   blanketRequired = no
 
+  # okay, clean this up.
   for val, i in args
     blanketRequired = yes if ['-r', '--require'].indexOf(val) > -1 and args[i + 1] is 'blanket'
 

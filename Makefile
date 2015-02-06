@@ -17,7 +17,7 @@ cov:
 	open coverage.html
 
 blanket:
-	./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register blanket-tests
+	./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register ./blanket-tests/*
 
 blanket-cov:
 	./node_modules/mocha/bin/mocha --require ./bin/index.js --compilers coffee:coffee-script/register blanket-tests -R html-cov > coverage.html
