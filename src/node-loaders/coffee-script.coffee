@@ -1,6 +1,7 @@
 fs = require 'fs'
 path = require 'path'
 coffeeScript = require 'coffee-script'
+log = require '../log'
 
 module.exports = (blanket)->
   oldLoaderCS = require.extensions['.coffee']
@@ -15,14 +16,13 @@ module.exports = (blanket)->
 
     if typeof(antipattern) isnt 'undefined' and blanket.matchPattern(filename.replace(/\.js$/,""), antipattern)
       oldLoader(localModule,filename)
-      if blanket.options('debug')
-        console.log("BLANKET-File will never be instrumented: #{filename}")
+      log.debug("BLANKET-File will never be instrumented: #{filename}")
 
     else if blanket.matchPattern(filename,pattern)
-      console.log "BLANKET-Attempting instrument of: #{filename}" if blanket.options 'debug'
+      log.debug "BLANKET-Attempting instrument of: #{filename}"
       content = fs.readFileSync(filename, 'utf8')
       if reporter_options and reporter_options.shortnames
-        inputFilename = filename.replace(path.dirname(filename),"")
+        inputFilename = filename.replace(process.cwd(),'').replace('/', '')
 
       if reporter_options and reporter_options.basepath
         inputFilename = filename.replace(reporter_options.basepath + '/',"")
@@ -37,7 +37,7 @@ module.exports = (blanket)->
           instrumented = instrumented.replace(/require\s*\(\s*("|')\./g,'require($1'+baseDirPath)
           localModule._compile(instrumented, originalFilename)
         catch err
-          console.log 'Error parsing instrumented code: ', err
+          log.error 'Error parsing instrumented code: ', err
           throw new Error("BLANKET-Error parsing instrumented code: " + err)
     else
       oldLoaderCS(localModule, originalFilename)
