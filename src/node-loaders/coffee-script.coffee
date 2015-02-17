@@ -15,7 +15,7 @@ module.exports = (blanket)->
     antipattern = blanket.options('antifilter')
 
     if typeof(antipattern) isnt 'undefined' and blanket.matchPattern(filename.replace(/\.js$/,""), antipattern)
-      oldLoader(localModule,filename)
+      oldLoaderCS(localModule,filename)
       log.debug("BLANKET-File will never be instrumented: #{filename}")
 
     else if blanket.matchPattern(filename,pattern)
