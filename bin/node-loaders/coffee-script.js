@@ -22,7 +22,7 @@
       filename = blanket.normalizeBackslashes(filename);
       antipattern = blanket.options('antifilter');
       if (typeof antipattern !== 'undefined' && blanket.matchPattern(filename.replace(/\.js$/, ""), antipattern)) {
-        oldLoader(localModule, filename);
+        oldLoaderCS(localModule, filename);
         return log.debug("BLANKET-File will never be instrumented: " + filename);
       } else if (blanket.matchPattern(filename, pattern)) {
         log.debug("BLANKET-Attempting instrument of: " + filename);
