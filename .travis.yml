@@ -1,14 +1,21 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.10"
-  - "0.12"
+- '0.10'
+- '0.12'
 
 branches:
   only:
-    - master
-    - develop
+  - master
+  - develop
 
 notifications:
-  email: "ethan@ethanmick.com"
+  email: ethan@ethanmick.com
 
+deploy:
+  provider: npm
+  email: ethan@ethanmick.com
+  on:
+    tags: true
+  api_key:
+    secure: MnjO0/OL9yLKQsh4kLuBd7U5sS1w3IXRvOhF2YdUXFgVUA2FrItnB/tWhwr12x9LItHlXfzuCpalI2FMMSMYaa//NOPBgfHIkPo2nRin0espFDNp6+XTHyZZPtjnaHWoMEusNW6GpORx9zCfp1Qa1vLJ9eQ70yGf9Ox5Q6aihiI=
