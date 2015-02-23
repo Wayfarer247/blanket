@@ -1,7 +1,7 @@
 {
   "name": "blanket-node",
   "description": "Seamless JS and CS Code Coverage",
-  "version": "2.0.0-beta0",
+  "version": "2.0.0-beta1",
   "homepage": "https://github.com/ethanmick/blanket-node",
   "author": {
     "name": "Alex-Seville, Ethan Mick",
@@ -60,6 +60,7 @@
     }
   },
   "keywords": [
+    "blanket",
     "blanket-node",
     "node-blanket",
     "code coverage",
