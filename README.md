@@ -18,21 +18,9 @@ No worries, it compiles to JS, and that's used in NPM, so you can use this proje
 
 **NOTE: All Pull-Requests must be made into the `develop` branch.**
 
-* [Getting Started](#getting-started)
-* [Philosophy](#philosophy)
-* [Mechanism](#mechanism)
-* [Grunt Integration](#grunt-integration)
-* [Compatibility & Features List](#compatibility-and-features-list)
-* [Roll Your Own](#roll-your-own)
-* [Development](#development)
-* [Contact](#contact)
-* [Contributors](#contributors)  
-* [Roadmap](#roadmap)
-* [Revision History](#revision-history)
-
 ## Getting Started ##
 
-Please see the following guides for using Blanket.js:
+Installation is pretty straight forwards. I recommend you install it locally, and then use the local version of Mocha to run your tests.
 
 1. Install the package `npm install blanket-node --save-dev`
 2. Require Blanket when running tests: `./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register --require ./node_modules/blanket-node/bin/index.js -R html-cov > coverage.html ./test`
@@ -46,7 +34,6 @@ Blanket.js is a code coverage tool for javascript that aims to be:
 3. Easy to understand
 
 Blanket.js can be run seamlessly or can be customized for your needs.
-
 
 ## Mechanism
 
@@ -70,7 +57,12 @@ Blanket works in a 3 step process:
 
 **Your pull request must pass all tests (run `npm test` to be sure) and respect all existing coverage thresholds**
 
-## Roadmap
+# Changelog
 
-* First Beta Release
+## Version 2.0.0 (March 12th, 2015)
+* No show stopping bugs found
+* First release
+
+## Version 2.0.0-beta1 (March 12th, 2015)
+* First Beta Release of rewrite
 
