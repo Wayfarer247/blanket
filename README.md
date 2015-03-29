@@ -14,13 +14,35 @@ Whoops!
 
 No worries, it compiles to JS, and that's used in NPM, so you can use this project with JS or CS.
 
+<<<<<<< HEAD
 [Original Project Website](http://blanketjs.org/)  
+=======
+**NOTE:** Blanket.js will throw XHR cross domain errors if run with the file:// protocol.  See [Special Features Guide](docs/special_features.md) for more details and workarounds.
+>>>>>>> 790c863c47fe50ef4dd1a411e2e6bf36c8cc6263
 
 **NOTE: All Pull-Requests must be made into the `develop` branch.**
 
 ## Getting Started ##
 
+<<<<<<< HEAD
 Installation is pretty straight forwards. I recommend you install it locally, and then use the local version of Mocha to run your tests.
+=======
+Please see the following guides for using Blanket.js:
+
+**Browser**
+* [Getting Started](docs/getting_started_browser.md) (Basic QUnit usage)
+* [Intermediate](docs/intermediate_browser.md) (Other test runners, global options)
+* [Advanced](docs/advanced_browser.md) (writing your own reporters/adapters)
+* [Special Features Guide](docs/special_features.md)
+
+**Node**
+* [Getting Started](docs/getting_started_node.md) (basic mocha setup)
+* [Intermediate](docs/intermediate_node.md) (mocha testrunner, travis-ci reporter)
+* [Intermediate 2](docs/intermediate_node_2.md) (mocha, htmlcov, package.json setup)
+
+**Configuration**
+* [Options](docs/options.md) (Browser and Node)
+>>>>>>> 790c863c47fe50ef4dd1a411e2e6bf36c8cc6263
 
 1. Install the package `npm install blanket-node --save-dev`
 2. Require Blanket when running tests: `./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register --require ./node_modules/blanket-node/bin/index.js -R html-cov > coverage.html ./test`

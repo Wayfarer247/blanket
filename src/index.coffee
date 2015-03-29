@@ -154,6 +154,8 @@ blanketNode = (userOptions)->
         # properties. Not magic, just private w/ getter
         if reporter_options and reporter_options.shortnames
           inputFilename = filename.replace(path.dirname(filename),"")
+        else if reporter_options and reporter_options.relativepath
+          inputFilename = filename.replace(process.cwd(), '')
 
         if reporter_options and reporter_options.basepath
           inputFilename = filename.replace(reporter_options.basepath + '/',"")
